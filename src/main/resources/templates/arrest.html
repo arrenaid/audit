@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div th:insert="header::header"></div>
+
+<main>
+
+    <div class="container mt-5 col-lg-6 col-md-8 mx-auto">
+        <h1>
+            <p th:text="'Hello, ' + ${title} + '!'" />
+        </h1>
+    </div>
+</main>
+<div th:insert="footer::footer"></div>
+</body>
+</html>
