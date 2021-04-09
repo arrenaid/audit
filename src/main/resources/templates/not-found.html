@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div th:insert="header::header"></div>
+<main>
+    <div class="container mt-5 col-lg-6 col-md-8 mx-auto">
+        <p th:text="'Hello, ' + ${title} + '!'" />
+    <section class="page-section">
+        <div class="full-width-screen">
+            <div class="container-fluid p-0">
+                <div class="content-detail p-0">
+                    <div class="container-txt p-0">
+                        <h1><span>404</span></h1>
+                        <div class="blobs_1"></div>
+                        <div class="blobs_2"></div>
+                        <div class="blobs_3"></div>
+                        <div class="blobs_4"></div>
+                        <div class="blobs_5"></div>
+                        <div class="blobs_6"></div>
+                        <div class="blobs_7"></div>
+                    </div>
+                    <h4 class="sub-title">Oops!</h4>
+
+                    <p class="detail-text">We're sorry,<br> The page you were looking for doesn't exist anymore.</p>
+
+                    <div class="back-btn">
+                        <a href="/" class="btn">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+</main>
+<div th:insert="footer::footer"></div>
+</body>
+</html>

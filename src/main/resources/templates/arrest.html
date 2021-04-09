@@ -14,6 +14,49 @@
         <h1>
             <p th:text="'Hello, ' + ${title} + '!'" />
         </h1>
+        <p>
+            <a href="/arrest/add" th:href="@{/arrest/add}" class="btn btn-large btn-success">Добавить</a>
+        </p>
+        <!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ -->
+        <div class="content">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <td>Госорган</td>
+                    <td>Номер</td>
+                    <td>Дата</td>
+                    <td>Основание</td>
+                    <td>Сумма</td>
+                    <td>Ссылка</td>
+                    <td>Статус</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${arrests.empty}">
+                    <td colspan="4">No tasks</td>
+                </tr>
+                <tr th:each="el : ${arrests}">
+                    <td th:text="${el.organCode}"/>
+                    <td th:text="${el.docNum}"/>
+                    <td th:text="${el.docDate}"/>
+                    <td th:text="${el.purpose}"/>
+                    <td th:text="${el.amount}"/>
+                    <td><a href="/client" th:href="@{'/' + ${el.arrest_id}}" th:text="${el.refDocNum}"/></td>
+                    <td th:text="${el.operation}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container mx-auto">
+            <h1>arrest list</h1>
+            <div th:each="el : ${arrests}" class="alert alert-info mt-5">
+                <h2 th:text="${el.organCode} + ' '+ ${el.docNum}+' '+ ${el.docDate}"/>
+                <p th:text="${el.purpose} + ' ' + ${el.amount}"/>
+                <p th:text="${el.refDocNum} + ' ' + ${el.operation}"/>
+            </div>
+        </div>
+
     </div>
 </main>
 <div th:insert="footer::footer"></div>

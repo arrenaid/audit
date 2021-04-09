@@ -9,11 +9,18 @@
 <div th:insert="header::header"></div>
 
 <main>
-
     <div class="container mt-5 col-lg-6 col-md-8 mx-auto">
-        <h2>
-            <p th:text="'Hello, ' + ${title} + '!'" />
-        </h2>
+        <h1>client list</h1>
+        <p>
+            <a href="/client/add" th:href="@{/client/add}" class="btn btn-large btn-success">Добавить</a>
+        </p>
+        <div th:each="el : ${clients}" class="alert alert-info mt-5">
+            <h2 th:text="${el.lastName} + ' '+ ${el.firstName}"/>
+            <h3 th:text="'Дата рождения - ' + ${el.dateOfBirth} + '. Место рождения - ' + ${el.placeOfBirth}"/>
+            <p th:text="'ДУЛ (номер и серия) - '+${el.identDoc}"/>
+            <a th:href="@{/arrestClient}" class="btn btn-info" th:text="'Аресты - ' + ${el.arrestList}"/>
+<!--            <a th:href="home">открыть</a>-->
+        </div>
     </div>
 </main>
 <div th:insert="footer::footer"></div>
