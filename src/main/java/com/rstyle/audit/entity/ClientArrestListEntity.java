@@ -3,10 +3,11 @@ package com.rstyle.audit.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "client_arrest_list")
 public class ClientArrestListEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int arrest_list_id;
     @Column(name = "id_client")
     private int idClient;
     @Column(name = "id_arrest")
@@ -21,11 +22,11 @@ public class ClientArrestListEntity {
     }
 
     public int getId() {
-        return id;
+        return arrest_list_id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.arrest_list_id = id;
     }
 
     public int getIdClient() {

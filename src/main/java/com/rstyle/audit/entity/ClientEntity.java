@@ -22,12 +22,13 @@ public class ClientEntity {
     @Column(name = "place_of_birth")
     private String placeOfBirth;
 
-    //    @Column(name = "ident_doc")
+//    @Column(name = "ident_doc")
 //    private int identDoc;
 //    private DocEntity identDoc;
+
     @Column(name = "type_doc")
     private  int typeDoc;
-    @Column(name = "number_docseries_doc")
+    @Column(name = "number_doc")
     private String numberDoc;
     @Column(name = "series_doc")
     private String seriesDoc;
@@ -74,6 +75,18 @@ public class ClientEntity {
         this.typeDoc = typeDoc;
         this.numberDoc = numberDoc;
         this.seriesDoc = seriesDoc;
+    }
+
+    public void Update(String lastName, String firstName, Date dateOfBirth, String placeOfBirth, int typeDoc, String numberDoc, String seriesDoc, Date issueDateDoc, int arrestList) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.dateOfBirth = dateOfBirth;
+        this.placeOfBirth = placeOfBirth;
+        this.typeDoc = typeDoc;
+        this.numberDoc = numberDoc;
+        this.seriesDoc = seriesDoc;
+        this.issueDateDoc = issueDateDoc;
+        this.arrestList = arrestList;
     }
 
     public int getClient_id() {
@@ -155,6 +168,7 @@ public class ClientEntity {
     public void setIssueDateDoc(Date issueDateDoc) {
         this.issueDateDoc = issueDateDoc;
     }
+
 
     //    public List<ArrestEntity> getLocalArrestList() {
 //        return localArrestList;

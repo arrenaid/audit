@@ -9,6 +9,7 @@ import com.rstyle.audit.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,16 +35,24 @@ public class ArrestService {
     }
     private void createClientArrestList(int clientId,int arrestId){
         ClientArrestListEntity object = new ClientArrestListEntity(clientId,arrestId);
-
         repositoryList.save(object);
     }
     public List<ArrestEntity> findAllArrestByClientId(int clientId){
-        List<ArrestEntity> result = null;
-        List<ClientArrestListEntity> list = repositoryList.findByIdClientAll(clientId);
-        list.forEach(cnt ->{
-            Optional<ArrestEntity> arrest = arrestRepository.findById(cnt.getIdArrest());
-            result.add(arrest.get());
-        });
+        List<ArrestEntity> result = new ArrayList<>();
+        try {
+            List<ClientArrestListEntity> list = repositoryList.findByIdClient(clientId);
+            list.forEach(cnt -> {
+                Optional<ArrestEntity> arrest = arrestRepository.findById(cnt.getIdArrest());
+                result.add(arrest.get());
+            });
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return  result;
+        }
         return result;
+    }
+    public ClientEntity findClientArrestById(int clientId){
+        return clientRepository.findById(clientId).orElseThrow();
     }
 }

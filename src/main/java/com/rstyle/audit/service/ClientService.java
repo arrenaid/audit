@@ -1,17 +1,13 @@
 package com.rstyle.audit.service;
 
-import com.rstyle.audit.entity.ArrestEntity;
 import com.rstyle.audit.entity.ClientArrestListEntity;
 import com.rstyle.audit.entity.ClientEntity;
 import com.rstyle.audit.repository.ArrestRepository;
 import com.rstyle.audit.repository.ClientArrestListRepository;
 import com.rstyle.audit.repository.ClientRepository;
-import net.bytebuddy.TypeCache;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,11 +34,28 @@ public class ClientService {
     }
     private void updateArrestList(ClientEntity client){
         client.setArrestList(0);
-        List<ClientArrestListEntity> list = repositoryList.findByIdClientAll(client.getClient_id());
-        list.forEach(listCnt ->{
-            client.setArrestList(client.getArrestList()+1);
-        });
+        try {
+            List<ClientArrestListEntity> list = repositoryList.findByIdClient(client.getClient_id());
+            list.forEach(listCnt -> {
+                client.setArrestList(client.getArrestList() + 1);
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
+
+    public boolean existById(int id) {
+        return clientRepository.existsById(id);
+    }
+
+    public Optional<ClientEntity> findById(int id) {
+        return clientRepository.findById(id);
+    }
+
+    public void Delete(ClientEntity client) {
+        clientRepository.delete(client);
+    }
+
 //    private void updateLocalArrestList(ClientEntity client){
 //        List<ClientArrestListEntity> list = repositoryList.findByIdClientAll(client.getClient_id());
 //        list.forEach(listCnt ->{

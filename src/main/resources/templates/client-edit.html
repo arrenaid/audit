@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div th:insert="header::header"></div>
+
+<main>
+    <div class="container mt-5 mb-5 col-lg-6 col-md-8 mx-auto">
+        <div th:each="el : ${client}">
+            <h1 th:text="'Редактировать данные клиента: ' + ${el.lastName} + ' ' + ${el.firstName}"> </h1>
+            <form method="post">
+                <p>Фамилия</p>
+                <input type="text" th:value="${el.lastName}" name="last_name" placeholder="введите фамилию" class="form-control"><br>
+                <p>Имя</p>
+                <input type="text"  th:value="${el.firstName}" name="first_name" placeholder="введите имя" class="form-control"><br>
+                <p>Дата рождения</p>
+                <input type="text"  th:value="${el.dateOfBirth}" name="date_of_birth" placeholder="введите дату рождения" class="form-control"><br>
+                <p>Место рождения</p>
+                <input type="text"  th:value="${el.placeOfBirth}" name="place_of_birth" placeholder="введите место рождения" class="form-control"><br>
+
+                <p> ДУЛ тип</p>
+                <input type="number"  th:value="${el.typeDoc}" name="type_doc" placeholder="введите тип документа ДУЛ" class="form-control"><br>
+                <p>ДУЛ номер</p>
+                <input type="text"  th:value="${el.numberDoc}" name="number_doc" placeholder="введите номер документа" class="form-control"><br>
+                <p>ДУЛ Серия</p>
+                <input type="text"  th:value="${el.seriesDoc}" name="series_doc" placeholder="введите серию документа" class="form-control"><br>
+
+                <p>ДУЛ Дата</p>
+                <input type="text"  th:value="${el.issueDateDoc}" name="issue_date_doc" placeholder="введите время получения документа" class="form-control"><br>
+                <p>Число аррестов</p>
+                <input type="number"  th:value="${el.arrestList}" name="arrest_list" placeholder="введите число арестов" class="form-control"><br>
+                <button type="submit" class=" btn btn-large btn-success button-success">Сохранить изменения</button>
+            </form>
+        </div>
+    </div>
+</main>
+<div th:insert="footer::footer"></div>
+</body>
+</html>
