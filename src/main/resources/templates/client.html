@@ -10,10 +10,8 @@
 
 <main>
     <div class="container mt-5 col-lg-6 col-md-8 mx-auto">
-        <h1>client list</h1>
-        <p>
-            <a href="/client/add" th:href="@{/client/add}" class="btn btn-large btn-success">Добавить</a>
-        </p>
+        <p><h1 th:text="${title}"/>
+        <a href="/client/add" th:href="@{/client/add}" class="btn btn-large btn-success">Добавить</a></p>
         <div th:each="el : ${clients}" class="alert alert-info mt-5">
             <h3 th:text="${el.lastName} + ' '+ ${el.firstName}"/>
             <p th:text="'Дата рождения - ' + ${el.dateOfBirth} + '. Место рождения - ' + ${el.placeOfBirth}"/>

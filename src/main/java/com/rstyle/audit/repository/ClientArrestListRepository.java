@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ClientArrestListRepository extends JpaRepository<ClientArrestListEntity,Integer > {
     List<ClientArrestListEntity> findByIdClient(int idClient);
+
+    ClientArrestListEntity findByIdArrest(int arrest_id);
 }

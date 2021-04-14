@@ -15,7 +15,7 @@
             <p th:text="${title}" />
         </h1>
         <p>
-            <a href="/arrest/add" th:href="@{/arrest/} + ${id} +'/add'" class="btn btn-large btn-success">Добавить</a>
+            <a href="/arrest/add" th:href="@{/arrest/add/} + ${id}" class="btn btn-large btn-success">Добавить</a>
         </p>
         <!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ -->
         <div class="content">
@@ -41,21 +41,20 @@
                     <td th:text="${el.docDate}"/>
                     <td th:text="${el.purpose}"/>
                     <td th:text="${el.amount}"/>
-                    <td><a href="/client" th:href="@{'/' + ${el.arrest_id}}" th:text="${el.refDocNum}"/></td>
+                    <td><a href="/client" th:href="@{/} + ${el.arrest_id}" th:text="${el.refDocNum}"/></td>
                     <td th:text="${el.operation}"/>
+                    <td>
+                        <a th:href="@{/arrest/edit/} + ${el.arrest_id}" class="btn btn-warning" th:text="Изменить"/>
+                        <form th:action="'/arrest/remove/' + ${el.arrest_id}" method="post">
+                            <button type="submit" class="btn btn-warning">Удалить</button>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="container mx-auto">
-            <h1>arrest list</h1>
-            <div th:each="el : ${arrests}" class="alert alert-info mt-5">
-                <h2 th:text="${el.organCode} + ' '+ ${el.docNum}+' '+ ${el.docDate}"/>
-                <p th:text="${el.purpose} + ' ' + ${el.amount}"/>
-                <p th:text="${el.refDocNum} + ' ' + ${el.operation}"/>
-            </div>
-        </div>
+
 
     </div>
 </main>

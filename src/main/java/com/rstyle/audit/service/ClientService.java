@@ -1,5 +1,6 @@
 package com.rstyle.audit.service;
 
+import com.rstyle.audit.entity.ArrestEntity;
 import com.rstyle.audit.entity.ClientArrestListEntity;
 import com.rstyle.audit.entity.ClientEntity;
 import com.rstyle.audit.repository.ArrestRepository;
@@ -16,7 +17,7 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
     @Autowired
-    private ArrestRepository arrestRepository;
+    private ArrestService arrestService;
     @Autowired
     private ClientArrestListRepository repositoryList;
 
@@ -32,27 +33,34 @@ public class ClientService {
     public List<ClientEntity> findAllClient(){
         return clientRepository.findAll();
     }
-    private void updateArrestList(ClientEntity client){
-        client.setArrestList(0);
+    public void updateArrestList(ClientEntity client){
         try {
             List<ClientArrestListEntity> list = repositoryList.findByIdClient(client.getClient_id());
-            list.forEach(listCnt -> {
-                client.setArrestList(client.getArrestList() + 1);
-            });
+            client.setArrestList(list.size());
         }catch (Exception e){
             e.printStackTrace();
+            client.setArrestList(0);
         }
+        clientRepository.save(client);
     }
 
     public boolean existById(int id) {
         return clientRepository.existsById(id);
     }
 
-    public Optional<ClientEntity> findById(int id) {
-        return clientRepository.findById(id);
+//    public Optional<ClientEntity> findById(int id) {
+//        return clientRepository.findById(id);
+//    }
+    public ClientEntity findById(int id) {
+        Optional<ClientEntity> client = clientRepository.findById(id);
+        return client.get();
     }
 
     public void Delete(ClientEntity client) {
+        List<ArrestEntity> arrests = arrestService.findAllArrestByClientId(client.getClient_id());
+        arrests.forEach(cnt -> {
+            arrestService.delete(cnt);
+        });
         clientRepository.delete(client);
     }
 

@@ -1,6 +1,7 @@
 package com.rstyle.audit.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -75,9 +76,10 @@ public class ClientEntity {
         this.typeDoc = typeDoc;
         this.numberDoc = numberDoc;
         this.seriesDoc = seriesDoc;
+        this.issueDateDoc = new Date();
     }
 
-    public void Update(String lastName, String firstName, Date dateOfBirth, String placeOfBirth, int typeDoc, String numberDoc, String seriesDoc, Date issueDateDoc, int arrestList) {
+    public void Update(String lastName, String firstName, Date dateOfBirth, String placeOfBirth, int typeDoc, String numberDoc, String seriesDoc, Date issueDateDoc) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.dateOfBirth = dateOfBirth;
@@ -86,7 +88,7 @@ public class ClientEntity {
         this.numberDoc = numberDoc;
         this.seriesDoc = seriesDoc;
         this.issueDateDoc = issueDateDoc;
-        this.arrestList = arrestList;
+        //this.arrestList = arrestList;
     }
 
     public int getClient_id() {

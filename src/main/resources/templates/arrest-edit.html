@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div th:insert="header::header"></div>
+
+<main>
+    <div class="container mt-5 mb-5 col-lg-6 col-md-8 mx-auto">
+        <h1 th:text="${title}"/>
+        <div th:each="el : ${arrest}">
+            <form method="post">
+                <p>Госорган</p>
+                <input type="number" th:value="${el.organCode}" name="organ_code" placeholder="госорган" class="form-control"><br>
+                <p>Номер документа</p>
+                <input type="text" th:value="${el.docNum}" name="doc_num" placeholder="номер документа" class="form-control"><br>
+                <p>Основание</p>
+                <textarea type="text" name="purpose" placeholder="основание" class="form-control" th:text="${el.purpose}"/><br>
+                <p>Сумма</p>
+                <input type="number" th:value="${el.amount}" name="amount" placeholder="сумма ареста" class="form-control"><br>
+                <p>Ссылка</p>
+                <input type="text" th:value="${el.refDocNum}" name="ref_doc_num" placeholder="ссылка" class="form-control"><br>
+                <p>Статус</p>
+                <input type="number" th:value="${el.operation}" name="operation" placeholder="статус" class="form-control"><br>
+                <button type="submit" class="btn btn-large btn-success">Обновить</button>
+            </form>
+        </div>
+    </div>
+</main>
+<div th:insert="footer::footer"></div>
+</body>
+</html>
