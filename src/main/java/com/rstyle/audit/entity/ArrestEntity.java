@@ -2,14 +2,11 @@ package com.rstyle.audit.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "arrest")
 public class ArrestEntity {
     @Id
-//    @SequenceGenerator(name = "arrest_generator", sequenceName = "arrest_seq", allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "arrest_generator")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int arrest_id;
     @Column(name = "organ_code")

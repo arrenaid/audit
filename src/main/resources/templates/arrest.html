@@ -7,17 +7,14 @@
 </head>
 <body>
 <div th:insert="header::header"></div>
-
 <main>
-
     <div class="container mt-5 col-lg-6 col-md-8 mx-auto">
         <h1>
             <p th:text="${title}" />
         </h1>
-        <p>
+        <p th:if="${id}">
             <a href="/arrest/add" th:href="@{/arrest/add/} + ${id}" class="btn btn-large btn-success">Добавить</a>
         </p>
-        <!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ -->
         <div class="content">
             <table class="table table-bordered table-striped">
                 <thead>
@@ -33,7 +30,7 @@
                 </thead>
                 <tbody>
                 <tr th:if="${arrests.empty}">
-                    <td colspan="4">No tasks</td>
+                    <td colspan="4">Нет арестов</td>
                 </tr>
                 <tr th:each="el : ${arrests}">
                     <td th:text="${el.organCode}"/>
@@ -43,7 +40,7 @@
                     <td th:text="${el.amount}"/>
                     <td><a href="/client" th:href="@{/} + ${el.arrest_id}" th:text="${el.refDocNum}"/></td>
                     <td th:text="${el.operation}"/>
-                    <td>
+                    <td th:if="${id}" >
                         <a th:href="@{/arrest/edit/} + ${el.arrest_id}" class="btn btn-warning" th:text="Изменить"/>
                         <form th:action="'/arrest/remove/' + ${el.arrest_id}" method="post">
                             <button type="submit" class="btn btn-warning">Удалить</button>
@@ -53,9 +50,6 @@
                 </tbody>
             </table>
         </div>
-
-
-
     </div>
 </main>
 <div th:insert="footer::footer"></div>

@@ -12,19 +12,31 @@
     <div class="container mt-5 mb-5 col-lg-6 col-md-8 mx-auto">
         <h1 th:text="${title}"/>
         <form method="post">
-            <p>Госорган</p>
-            <input type="number" name="organ_code" placeholder="госорган" class="form-control"><br>
-            <p>Номер документа</p>
-            <input type="text" name="doc_num" placeholder="номер документа" class="form-control"><br>
-            <p>Основание</p>
-            <textarea type="text" name="purpose" placeholder="основание" class="form-control"></textarea><br>
+            <p>Госорган
+            <input type="number" name="organ_code" placeholder="госорган" class="form-control" list="organ_list" required maxlength="3">
+                <datalist id="organ_list">
+                    <option label="ФНС">39</option>
+                    <option label="ФССП">17</option>
+                </datalist>
+            </p>
+            <br>
+            <p>Номер документа
+            <input type="text" name="doc_num" placeholder="номер документа" class="form-control" required maxlength="30"></p><br>
+            <p>Основание
+            <textarea type="text" name="purpose" placeholder="основание" class="form-control" required minlength="6" maxlength="1000"></textarea></p><br>
             <p>Сумма</p>
-            <input type="number" name="amount" placeholder="сумма ареста" class="form-control"><br>
+            <input type="number" name="amount" placeholder="сумма ареста" class="form-control" required><br>
             <p>Ссылка</p>
             <input type="text" name="ref_doc_num" placeholder="ссылка" class="form-control"><br>
-            <p>Статус</p>
-            <input type="number" name="operation" placeholder="статус" class="form-control"><br>
-            <button type="submit" class="button-success">добавить</button>
+            <p>Статус
+            <input type="number" name="operation" placeholder="статус" class="form-control" required pattern="1" maxlength="1" list="option_list">
+                <datalist id="option_list">
+                    <option label="Действующий">1</option>
+                    <option label="Исполненный">2</option>
+                    <option label="Отменен">3</option>
+                </datalist>
+            </p><br>
+            <button type="submit" class="btn btn-large btn-success">добавить</button>
         </form>
     </div>
 </main>

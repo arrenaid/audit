@@ -7,30 +7,38 @@
 </head>
 <body>
 <div th:insert="header::header"></div>
-
 <main>
     <div class="container mt-5 mb-5 col-lg-6 col-md-8 mx-auto">
         <h1>добавить нового клиента</h1>
         <form action="/client/add" method="post">
-            <p>Фамилия</p>
-            <input type="text" name="last_name" placeholder="введите фамилию" class="form-control"><br>
-            <p>Имя</p>
-            <input type="text" name="first_name" placeholder="введите имя" class="form-control"><br>
-            <p>Дата рождения</p>
-            <input type="date" name="date_of_birth" placeholder="введите дату рождения" class="form-control"><br>
-            <p>Место рождения</p>
-            <input type="text" name="place_of_birth" placeholder="введите место рождения" class="form-control"><br>
-
-            <p> ДУЛ тип</p>
-            <input type="number" name="type_doc" placeholder="введите тип документа ДУЛ" class="form-control"><br>
-            <p>ДУЛ номер</p>
-            <input type="text" name="number_doc" placeholder="введите номер документа" class="form-control"><br>
-            <p>ДУЛ Серия</p>
-            <input type="text" name="series_doc" placeholder="введите серию документа" class="form-control"><br>
-
-<!--            <input type="date" name="issue_date_doc" placeholder="введите время получения документа class="form-control"><br>-->
-<!--            <input type="number" name="arrest_list" placeholder="введите число арестов" class="form-control"><br>-->
-            <button type="submit" class=" btn btn-large btn-success button-success">Добавить</button>
+            <p>Фамилия
+            <input type="text" name="last_name" placeholder="введите фамилию" class="form-control" required></p>
+            <p>Имя
+            <input type="text" name="first_name" placeholder="введите имя" class="form-control" required></p>
+            <p>Дата рождения
+            <input type="date" name="date_of_birth" placeholder="введите дату рождения" class="form-control"
+                   required></p>
+            <p>Место рождения
+            <input type="text" name="place_of_birth" placeholder="введите место рождения" class="form-control"
+                   required></p>
+            <br>
+            <p> ДУЛ тип
+            <input type="number" name="type_doc" placeholder="введите тип документа ДУЛ" class="form-control"
+                   list="doc_list" required maxlength="3">
+                <datalist id="doc_list">
+                    <option label="ФНС Паспорт РФ">21</option>
+                    <option label="ФНС Загранпаспорт РФ">22</option>
+                    <option label="ФССП Паспорт РФ">70</option>
+                    <option label="ФССП Загранпаспорт РФ">80</option>
+                </datalist>
+            </p>
+            <p>ДУЛ номер
+            <input type="text" name="number_doc" placeholder="введите номер документа" class="form-control"
+                   required minlength="6" maxlength="6"></p>
+            <p>ДУЛ Серия
+            <input type="text" name="series_doc" placeholder="введите серию документа" class="form-control"
+                   required minlength="2" maxlength="4"></p><br>
+            <button type="submit" class=" btn btn-large btn-success">Добавить</button>
         </form>
     </div>
 </main>

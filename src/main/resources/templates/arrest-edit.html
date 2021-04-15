@@ -7,24 +7,40 @@
 </head>
 <body>
 <div th:insert="header::header"></div>
-
 <main>
     <div class="container mt-5 mb-5 col-lg-6 col-md-8 mx-auto">
         <h1 th:text="${title}"/>
         <div th:each="el : ${arrest}">
             <form method="post">
-                <p>Госорган</p>
-                <input type="number" th:value="${el.organCode}" name="organ_code" placeholder="госорган" class="form-control"><br>
-                <p>Номер документа</p>
-                <input type="text" th:value="${el.docNum}" name="doc_num" placeholder="номер документа" class="form-control"><br>
+                <p>Госорган
+                <input type="number" th:value="${el.organCode}" name="organ_code" placeholder="госорган"
+                       class="form-control" required list="organ_list" maxlength="30">
+                    <datalist id="organ_list">
+                        <option label="ФНС">39</option>
+                        <option label="ФССП">17</option>
+                    </datalist>
+                </p><br>
+                <p>Номер документа
+                <input type="text" th:value="${el.docNum}" name="doc_num" placeholder="номер документа"
+                       class="form-control" required maxlength="30"></p><br>
                 <p>Основание</p>
-                <textarea type="text" name="purpose" placeholder="основание" class="form-control" th:text="${el.purpose}"/><br>
-                <p>Сумма</p>
-                <input type="number" th:value="${el.amount}" name="amount" placeholder="сумма ареста" class="form-control"><br>
-                <p>Ссылка</p>
-                <input type="text" th:value="${el.refDocNum}" name="ref_doc_num" placeholder="ссылка" class="form-control"><br>
-                <p>Статус</p>
-                <input type="number" th:value="${el.operation}" name="operation" placeholder="статус" class="form-control"><br>
+                <textarea type="text" name="purpose" placeholder="основание" class="form-control"
+                          th:text="${el.purpose}" required maxlength="1000"/><br>
+                <p>Сумма
+                <input type="number" th:value="${el.amount}" name="amount" placeholder="сумма ареста"
+                       class="form-control" required></p><br>
+                <p>Ссылка
+                <input type="text" th:value="${el.refDocNum}" name="ref_doc_num" placeholder="ссылка"
+                       class="form-control" ></p><br>
+                <p>Статус
+                <input type="number" th:value="${el.operation}" name="operation" placeholder="статус"
+                       class="form-control" required pattern="1|2|3" maxlength="1" list="option_list">
+                    <datalist id="option_list">
+                        <option label="Действующий">1</option>
+                        <option label="Исполненный">2</option>
+                        <option label="Отменен">3</option>
+                    </datalist>
+                </p><br>
                 <button type="submit" class="btn btn-large btn-success">Обновить</button>
             </form>
         </div>

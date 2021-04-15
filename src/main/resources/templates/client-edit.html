@@ -13,26 +13,38 @@
         <div th:each="el : ${client}">
             <h1 th:text="'Редактировать данные клиента: ' + ${el.lastName} + ' ' + ${el.firstName}"> </h1>
             <form method="post">
-                <p>Фамилия</p>
-                <input type="text" th:value="${el.lastName}" name="last_name" placeholder="введите фамилию" class="form-control"><br>
-                <p>Имя</p>
-                <input type="text"  th:value="${el.firstName}" name="first_name" placeholder="введите имя" class="form-control"><br>
-                <p>Дата рождения</p>
-                <input type="text"  th:value="${el.dateOfBirth}" name="date_of_birth" placeholder="введите дату рождения" class="form-control"><br>
-                <p>Место рождения</p>
-                <input type="text"  th:value="${el.placeOfBirth}" name="place_of_birth" placeholder="введите место рождения" class="form-control"><br>
-
-                <p> ДУЛ тип</p>
-                <input type="number"  th:value="${el.typeDoc}" name="type_doc" placeholder="введите тип документа ДУЛ" class="form-control"><br>
-                <p>ДУЛ номер</p>
-                <input type="text"  th:value="${el.numberDoc}" name="number_doc" placeholder="введите номер документа" class="form-control"><br>
-                <p>ДУЛ Серия</p>
-                <input type="text"  th:value="${el.seriesDoc}" name="series_doc" placeholder="введите серию документа" class="form-control"><br>
-
-                <p>ДУЛ Дата</p>
-                <input type="text"  th:value="${el.issueDateDoc}" name="issue_date_doc" placeholder="введите время получения документа" class="form-control"><br>
-<!--                <p>Число аррестов</p>-->
-<!--                <input type="number"  th:value="${el.arrestList}" name="arrest_list" placeholder="введите число арестов" class="form-control"><br>-->
+                <p>Фамилия
+                <input type="text" th:value="${el.lastName}" name="last_name" placeholder="введите фамилию"
+                       class="form-control" required></p>
+                <p>Имя
+                <input type="text"  th:value="${el.firstName}" name="first_name" placeholder="введите имя"
+                       class="form-control" required></p>
+                <p>Дата рождения
+                <input type="text"  th:value="${el.dateOfBirth}" name="date_of_birth" placeholder="введите дату рождения"
+                       class="form-control" required></p>
+                <p>Место рождения
+                <input type="text"  th:value="${el.placeOfBirth}" name="place_of_birth"
+                       placeholder="введите место рождения" class="form-control" required></p>
+                <br>
+                <p> ДУЛ тип
+                <input type="number"  th:value="${el.typeDoc}" name="type_doc" placeholder="введите тип документа ДУЛ"
+                       class="form-control" list="doc_list" required maxlength="3">
+                    <datalist id="doc_list">
+                        <option label="ФНС Паспорт РФ">21</option>
+                        <option label="ФНС Загранпаспорт РФ">22</option>
+                        <option label="ФССП Паспорт РФ">70</option>
+                        <option label="ФССП Загранпаспорт РФ">80</option>
+                    </datalist>
+                </p>
+                <p>ДУЛ номер
+                <input type="text"  th:value="${el.numberDoc}" name="number_doc" placeholder="введите номер документа"
+                       class="form-control" required minlength="6" maxlength="6"></p>
+                <p>ДУЛ Серия
+                <input type="text"  th:value="${el.seriesDoc}" name="series_doc" placeholder="введите серию документа"
+                       class="form-control" required minlength="2" maxlength="4"></p>
+                <p>ДУЛ Дата
+                <input type="text"  th:value="${el.issueDateDoc}" name="issue_date_doc"
+                       placeholder="введите время получения документа" class="form-control" required></p><br>
                 <button type="submit" class=" btn btn-large btn-success">Сохранить изменения</button>
             </form>
         </div>

@@ -1,17 +1,12 @@
 package com.rstyle.audit.entity;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 
 @Entity
 @Table(name = "client")
 public class ClientEntity {
     @Id
-//    @SequenceGenerator(name = "client_generator", sequenceName = "client_seq", allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_generator")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int client_id;
     @Column(name = "last_name")
@@ -22,11 +17,6 @@ public class ClientEntity {
     private Date dateOfBirth;
     @Column(name = "place_of_birth")
     private String placeOfBirth;
-
-//    @Column(name = "ident_doc")
-//    private int identDoc;
-//    private DocEntity identDoc;
-
     @Column(name = "type_doc")
     private  int typeDoc;
     @Column(name = "number_doc")
@@ -35,16 +25,11 @@ public class ClientEntity {
     private String seriesDoc;
     @Column(name = "issue_date_doc")
     private Date issueDateDoc;
-
     @Column(name = "arrest_list")
     private int arrestList;
 
-//    private List<ArrestEntity> localArrestList;
-
-
     public ClientEntity() {
     }
-
     public ClientEntity(String lastName, String firstName, Date dateOfBirth, String placeOfBirth, int typeDoc, String numberDoc, String seriesDoc, Date issueDateDoc, int arrestList) {
         this.lastName = lastName;
         this.firstName = firstName;
@@ -56,7 +41,6 @@ public class ClientEntity {
         this.issueDateDoc = issueDateDoc;
         this.arrestList = arrestList;
     }
-
     public ClientEntity(String lastName, String firstName, Date dateOfBirth, String placeOfBirth, int typeDoc, String numberDoc, String seriesDoc, Date issueDateDoc) {
         this.lastName = lastName;
         this.firstName = firstName;
@@ -67,7 +51,6 @@ public class ClientEntity {
         this.seriesDoc = seriesDoc;
         this.issueDateDoc = issueDateDoc;
     }
-
     public ClientEntity(String lastName, String firstName, Date dateOfBirth, String placeOfBirth, int typeDoc, String numberDoc, String seriesDoc) {
         this.lastName = lastName;
         this.firstName = firstName;
@@ -78,7 +61,6 @@ public class ClientEntity {
         this.seriesDoc = seriesDoc;
         this.issueDateDoc = new Date();
     }
-
     public void Update(String lastName, String firstName, Date dateOfBirth, String placeOfBirth, int typeDoc, String numberDoc, String seriesDoc, Date issueDateDoc) {
         this.lastName = lastName;
         this.firstName = firstName;
@@ -171,15 +153,4 @@ public class ClientEntity {
         this.issueDateDoc = issueDateDoc;
     }
 
-
-    //    public List<ArrestEntity> getLocalArrestList() {
-//        return localArrestList;
-//    }
-//
-//    public void setLocalArrestList(List<ArrestEntity> localArrestList) {
-//        this.localArrestList = localArrestList;
-//    }
-//    public void addLocalArrestList(ArrestEntity arrest){
-//        this.localArrestList.add(arrest);
-//    }
 }

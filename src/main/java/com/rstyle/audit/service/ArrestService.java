@@ -5,7 +5,6 @@ import com.rstyle.audit.entity.ClientArrestListEntity;
 import com.rstyle.audit.entity.ClientEntity;
 import com.rstyle.audit.repository.ArrestRepository;
 import com.rstyle.audit.repository.ClientArrestListRepository;
-import com.rstyle.audit.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +15,6 @@ import java.util.Optional;
 
 @Service
 public class ArrestService {
-//    @Autowired
-//    private ClientRepository clientRepository;
     @Autowired
     private ArrestRepository arrestRepository;
     @Autowired
@@ -28,7 +25,6 @@ public class ArrestService {
     public ArrestService (ArrestRepository arrestRepository){
         this.arrestRepository = arrestRepository;
     }
-
     public void createArrest(ArrestEntity arrest,int clientId) {
         arrestRepository.save(arrest);
         createClientArrestList(clientId,arrest.getArrest_id());
@@ -73,30 +69,16 @@ public class ArrestService {
     public ClientEntity findClientByArrestId(int arrestId){
         return findClientByClientId(repositoryList.findByIdArrest(arrestId).getIdClient());
     }
-
     public ArrestEntity findById(int id) {
         Optional<ArrestEntity> result = arrestRepository.findById(id);
         return result.get();
     }
-
     public void delete(ArrestEntity arrest) {
         ClientArrestListEntity list = repositoryList.findByIdArrest(arrest.getArrest_id());
         repositoryList.delete(list);
         arrestRepository.delete(arrest);
     }
-
     public boolean existById(int id) {
         return arrestRepository.existsById(id);
     }
-//    public void updateClientWithArrestList(int id) {
-//        try {
-//            ClientEntity client = findClientArrestById(id);
-////            Optional<ClientEntity> client = clientService.findById(id);
-////            ArrayList<ClientEntity> list = new ArrayList<>();
-////            client.ifPresent(list::add);
-////            clientService.updateArrestList(list.get(0));
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//    }
 }
